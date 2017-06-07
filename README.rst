@@ -1,6 +1,33 @@
 django-web-profiler's documentation:
 =====================================
 
+.. image:: https://readthedocs.org/projects/django-web-profiler/badge/?version=latest
+   :target: http://django-web-profiler.readthedocs.io/en/latest/
+   :alt: Documentation Status
+
+.. image:: https://travis-ci.org/MicroPyramid/django-web-profiler.svg?branch=master
+   :target: https://travis-ci.org/MicroPyramid/django-web-profiler
+
+.. image:: https://img.shields.io/pypi/dm/django-web-profiler.svg
+    :target: https://pypi.python.org/pypi/django-web-profiler
+    :alt: Downloads
+
+.. image:: https://img.shields.io/pypi/v/django-web-profiler.svg
+    :target: https://pypi.python.org/pypi/django-web-profiler
+    :alt: Latest Release
+
+.. image:: https://coveralls.io/repos/github/MicroPyramid/django-web-profiler/badge.svg?branch=master
+   :target: https://coveralls.io/github/MicroPyramid/django-web-profiler?branch=master
+
+.. image:: https://landscape.io/github/MicroPyramid/django-web-profiler/master/landscape.svg?style=flat
+   :target: https://landscape.io/github/MicroPyramid/django-web-profiler/master
+   :alt: Code Health
+
+.. image:: https://img.shields.io/github/license/micropyramid/django-web-profiler.svg
+    :target: https://pypi.python.org/pypi/django-web-profiler/
+    :alt: Latest Release
+
+
 Introduction:
 =============
 
@@ -46,17 +73,17 @@ Installation Procedure
        '..................'
     ]
 
-3. Add 'django_web_profiler.middleware.DebugLoggingMiddleware' to your project middlewares:
+3. Add 'django_web_profiler.middleware.DebugLoggingMiddleware' to your project middlewares::
 
     MIDDLEWARE = [
-       '..................',
-       'django_web_profiler.middleware.DebugLoggingMiddleware'
-       '..................'
+       '.....................................................',
+       'django_web_profiler.middleware.DebugLoggingMiddleware',
+       '.....................................................',
     ]
 
     Disable 'debug_toolbar.middleware.DebugToolbarMiddleware' if you've already using it.
 
-4. Make sure that 'debug-toolbar' has enabled for your application. After installing debug toolbar, add the following details to settings.py:
+4. Make sure that 'debug-toolbar' has enabled for your application. After installing debug toolbar, add the following details to settings.py::
 
     INTERNAL_IPS = ('127.0.0.1',)
 
@@ -90,7 +117,7 @@ Sample Application
     python sandbox/manage.py loaddata sandbox/fixtures/users.json
 
 
-3. Using the following command, we can generate url statistics in production environment i.e debug=False:
+3. Using the following command, we can generate url statistics in production environment i.e debug=False::
 
     python sandbox/manage.py logging_urls
 
