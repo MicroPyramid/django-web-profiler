@@ -1,0 +1,157 @@
+{% extends 'profiler_base.html' %}
+{% load profile_tags %}
+{% block stage %}
+<div class="col-sm-10">
+  <div class="content">
+    <div class="list">
+      <div class="list-header">
+        <label></label>
+      </div>
+      <div class="results-slct-items row mt">
+        <form name="companyform" id="companyform" method="post">
+          {% csrf_token %}
+          <div class="row">
+            <div class="col-md-offset-2 col-md-10 search_form">
+              <div class="col-md-4">
+                <input type="text" class="form-control" placeholder="Search for path, ip address" name="search" id="search" value="{{request.POST.search}}">
+              </div>
+              <div class="row">
+                <div class="col-md-4">
+                  <input type="text" class="form-control" placeholder="Search for queries, cpu time" name="queries" id="queries" value="{{request.POST.queries}}">
+                  <input type="hidden" name="page" id="page" value="{{request.POST.page}}">
+                </div>
+                <div class="col-md-2">
+                  <button type="submit" class="form-control submit">Search</button>
+                </div>
+              </div>
+              <div class="clearfix"></div>
+            </div>
+          </div>
+        </form>
+        {% if profile_logs_records %}
+        <table class="item_table table table-hover table-bordered" id="example_item">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Path</th>
+              <th>User Cpu Time</th>
+              <th>System Cpu Time</th>
+              <th>Ip Address</th>
+            </tr>
+          </thead>
+          <tbody class="overflow:scroll;">
+            {% for record in profile_logs_records %}
+            <tr class="">
+              <td class="item_details_control active" item_id="{{ record.id }}"><a class="open_table" href="#"><i class="fa fa-plus-circle"></i></a></td>
+              <td>{{ record.request_path }}</td>
+              <td>{{ record.timer_utime }}</td>
+              <td>{{ record.timer_stime }}</td>
+              <td>{{ record.ip_address }}</td>
+            </tr>
+            <tr class="sub_item_block sub_item_{{ record.id }}">
+              <td colspan="8">
+                <table style="overflow:scroll;" class="sub_items table table-hover table-bordered">
+                  <thead>
+                    <tr>
+                      <th>Device</th>
+                      <th>Number of queries</th>
+                      <th>Sql Time</th>
+                      <th>No of cache calls</th>
+                      <th>Cahe Time</th>
+                      <th>Cache Hits</th>
+                      <th>Cache Misses</th>
+                      <th>Cache Sets</th>
+                      <th>Cache Gets</th>
+                    </tr>
+                  </thead>
+                  <tbody class="overflow:scroll;">
+                    <tr class="sub_item_trs sub_item_{{ record.id }}">
+                      <td>{% if record.device %}{{ record.device }}{% else %}None{% endif %}</td>
+                      <td>{{ record.sql_queries }}</td>
+                      <td>{{ record.sql_time }}</td>
+                      <td>{% if record.cache_num_calls %}{{ record.cache_num_calls }}{% else %}None{% endif %}</td>
+                      <td>{{ record.cache_time }}</td>
+                      <td>{{ record.cache_hits }}</td>
+                      <td>{{ record.cache_misses }}</td>
+                      <th>{{ record.cache_sets }}</th>
+                      <th>{{record.cache_gets}}</th>
+                    </tr>
+                  </tbody>
+                </table>
+              </td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+        {% else %}
+        No Items Available in database
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</div>
+<div class="pagination_wrap text-center">
+  {% get_page current_page last_page as pages %}
+  <nav>
+    <ul class="pagination">
+      {% if current_page != 1 %}
+      <li class="prev"><a href="#" class="{{previous_page}}"><i class="fa fa-angle-double-left"></i></a></li>
+      <li class="prev"><a href="#" class="{{prev_page}}"><i class="fa fa-angle-left"></i></a></li>
+      <li><a href="#" class="1">first</a></li>
+      {% endif %}
+      {% for s in pages %}
+      <li {% ifequal s current_page %} class="active" {% endifequal %}><a href="#" class="{{s}}">{{s}}</a></li>
+      {% endfor %}
+      {% if current_page != last_page %}
+      <li><a href="{{last_page}}" class="{{ last_page }}">last</a></li>
+      <li><a href="#" class="{{ aft_page }}"><i class="fa fa-angle-right pagination-next"></i></a></li>
+      <li><a href="#" class="{{ after_page }}"><i class="fa fa-angle-double-right"></i></a></li>
+      {% endif %}
+    </ul>
+  </nav>
+</div>
+</div>
+</div>
+{% endblock %}
+{% block extra_js %}
+<script type="text/javascript">
+  $('.pagination li a').click(function(e) {
+    e.preventDefault();
+    $('#page').val($(this).attr('class'))
+    url = '/profiler/device-records-list/';
+    $('#companyform').attr('action', url)
+    $('#companyform').submit();
+  });
+
+</script>
+<script type="text/javascript">
+  var table = $('#example').DataTable({"pageLength": 100,});
+
+    $('.item_details_control').click(function(e){
+      e.preventDefault();
+    var record_id = $(this).attr('item_id')
+            var tr = $(this).closest('tr');
+        console.log($(tr).attr('class'))
+        var row = table.row( tr );
+
+        if ( $('tr.sub_item_'+record_id).hasClass('sub_item_block') ) {
+            // This row is already open - close it
+              row.child( $('tr.sub_item_'+record_id) ).show();
+              tr.addClass('shown');
+              $('tr.sub_item_'+record_id).removeClass('sub_item_block');
+
+        }
+        else {
+            $('tr.sub_item_'+record_id).addClass('sub_item_block');
+            tr.removeClass('shown');
+            }
+
+    if($(this).children().children('i').hasClass('fa fa-plus-circle')){
+          $(this).children().children('i').removeClass('fa fa-plus-circle').addClass('fa fa-minus-circle');
+      }
+    else{
+      $(this).children().children('i').removeClass('fa fa-minus-circle').addClass('fa fa-plus-circle');
+    }
+  });
+</script>
+{% endblock %}
