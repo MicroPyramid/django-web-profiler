@@ -1,0 +1,14 @@
+language: python
+
+python:
+  - "3.4"
+
+install:
+  - python setup.py install
+  - pip install coveralls
+
+script:
+  - coverage run --source=testapp  sandbox/manage.py test
+
+after_success:
+  coveralls

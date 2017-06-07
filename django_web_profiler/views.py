@@ -1,7 +1,7 @@
+import math
+
 from django.shortcuts import render, get_object_or_404
 from .models import ProfileLog, ProfileLogRecord
-from mpcomp.views import get_prev_after_pages_count
-import math
 from django.db.models import Q
 
 
@@ -9,6 +9,28 @@ from django.db.models import Q
 def index(request):
     profile_logs = ProfileLog.objects.filter().order_by('-start_time')
     return render(request, 'profiler_base.html', {'profile_logs': profile_logs})
+
+
+def get_prev_after_pages_count(page, no_pages):
+    prev_page = page - 1
+    if prev_page == 1:
+        previous_page = prev_page
+    else:
+        previous_page = prev_page - 1
+    if page == 1:
+        prev_page = page
+        previous_page = page
+
+    if page == no_pages:
+        aft_page = no_pages
+        after_page = no_pages
+    else:
+        aft_page = page + 1
+        if aft_page == no_pages:
+            after_page = no_pages
+        else:
+            after_page = aft_page + 1
+    return prev_page, previous_page, aft_page, after_page
 
 
 def records_list(request, record_id):
