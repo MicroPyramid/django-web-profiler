@@ -1,0 +1,56 @@
+.sub_item_block{
+  display: none;
+}
+table{
+  margin-left: 10px;
+}
+form{
+  margin-bottom: 25px;
+    margin-left: 10px;
+
+}
+.submit{
+  background: #00aeef !important;
+  text-transform: uppercase;
+  font-weight: 600;
+  font-size: 13px;
+  color: #fff;
+  letter-spacing: 0.5px;
+  border: none;
+  border-radius: 0;
+  padding: 6px 10px;
+  margin-top: 0px;
+}
+form .form-control{
+    border-radius: 0;
+    border: none;
+    height: 35px;
+    background: #f5f6f7;
+    font-size: 12px;
+    outline: none;
+    box-shadow: none;
+}
+.search_box{
+  margin-bottom: 10px;
+}
+.row.content {height: 1500px}
+
+/* Set gray background color and 100% height */
+.sidenav {
+  background-color: #f1f1f1;
+  height: 100%;
+}
+/* Set black background color, white text and some padding */
+footer {
+  background-color: #555;
+  color: white;
+  padding: 15px;
+}
+/* On small screens, set height to 'auto' for sidenav and grid */
+@media screen and (max-width: 767px) {
+  .sidenav {
+    height: auto;
+    padding: 15px;
+  }
+  .row.content {height: auto;} 
+}
