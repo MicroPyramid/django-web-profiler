@@ -8,7 +8,7 @@ install:
   - pip install coveralls
 
 script:
-  - coverage run --source=testapp  sandbox/manage.py test
+  - coverage run --source=testingapp  sandbox/manage.py test
 
 after_success:
   coveralls

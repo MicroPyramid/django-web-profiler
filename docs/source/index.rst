@@ -25,7 +25,7 @@ Installation Procedure
 
     pip install django-web-profiler
 
-        (or)
+            (or)
 
     git clone git://github.com/micropyramid/django-web-profiler.git
 
@@ -37,16 +37,33 @@ Installation Procedure
 
     INSTALLED_APPS = [
        '..................',
-       'django-web-profiler',
+       'compressor',
+       'debug_toolbar',
+       'django_web_profiler',
        '..................'
     ]
 
-3. After installing/cloning, add the following details in settings file about urls,  logger names::
+3. Add 'django_web_profiler.middleware.DebugLoggingMiddleware' to your project middlewares:
+
+    MIDDLEWARE = [
+       '..................',
+       'django_web_profiler.middleware.DebugLoggingMiddleware'
+       '..................'
+    ]
+
+    Disable 'debug_toolbar.middleware.DebugToolbarMiddleware' if you've already using it.
+
+4. Make sure that 'debug-toolbar' has enabled for your application. After installing debug toolbar, add the following details to settings.py:
+
+    INTERNAL_IPS = ('127.0.0.1',)
+
+
+5. After installing/cloning, add the following details in settings file about urls,  logger names::
 
     URLS = ['http://stage.testsite.com/', 'http://stage.testsite.com/testing/']
 
 
-4. Add the following logger to your existing loggers::
+6. Add the following logger to your existing loggers and create a folder called 'logs' where all profiler log files are stored::
 
         'request-logging': {
             'level': 'DEBUG',
@@ -55,14 +72,6 @@ Installation Procedure
         },
 
     Here file_log is a handler which contains a path where log files are stored.
-
-
-Features:
-=========
-
-    * Logs debug toolbar statistics of a urls into a database in a development environment.
-    * Logs statistics of a urls into a database in a production environment.
-    * Provides a basic UI to display production, developement url statistics.
 
 
 We are always looking to help you customize the whole or part of the code as you like.

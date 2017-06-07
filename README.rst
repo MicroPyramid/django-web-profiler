@@ -37,9 +37,22 @@ Installation Procedure
 
     INSTALLED_APPS = [
        '..................',
-       'django-web-profiler',
+       'compressor',
+       'debug_toolbar',
+       'django_web_profiler',
        '..................'
     ]
+
+3. Add 'django_web_profiler.middleware.DebugLoggingMiddleware' to your project middlewares:
+
+    MIDDLEWARE = [
+       '..................',
+       'django_web_profiler.middleware.DebugLoggingMiddleware'
+       '..................'
+    ]
+
+    Disable 'debug_toolbar.middleware.DebugToolbarMiddleware' if you've already using it.
+
 
 3. After installing/cloning, add the following details in settings file about urls,  logger names::
 
