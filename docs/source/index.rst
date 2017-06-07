@@ -46,17 +46,17 @@ Installation Procedure
        '..................'
     ]
 
-3. Add 'django_web_profiler.middleware.DebugLoggingMiddleware' to your project middlewares:
+3. Add 'django_web_profiler.middleware.DebugLoggingMiddleware' to your project middlewares::
 
     MIDDLEWARE = [
-       '..................',
-       'django_web_profiler.middleware.DebugLoggingMiddleware'
-       '..................'
+       '.....................................................',
+       'django_web_profiler.middleware.DebugLoggingMiddleware',
+       '.....................................................',
     ]
 
     Disable 'debug_toolbar.middleware.DebugToolbarMiddleware' if you've already using it.
 
-4. Make sure that 'debug-toolbar' has enabled for your application. After installing debug toolbar, add the following details to settings.py:
+4. Make sure that 'debug-toolbar' has enabled for your application. After installing debug toolbar, add the following details to settings.py::
 
     INTERNAL_IPS = ('127.0.0.1',)
 
@@ -90,7 +90,7 @@ Sample Application
     python sandbox/manage.py loaddata sandbox/fixtures/users.json
 
 
-3. Using the following command, we can generate url statistics in production environment i.e debug=False:
+3. Using the following command, we can generate url statistics in production environment i.e debug=False::
 
     python sandbox/manage.py logging_urls
 
