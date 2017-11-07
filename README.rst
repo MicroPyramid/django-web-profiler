@@ -8,10 +8,6 @@ django-web-profiler's documentation:
 .. image:: https://travis-ci.org/MicroPyramid/django-web-profiler.svg?branch=master
    :target: https://travis-ci.org/MicroPyramid/django-web-profiler
 
-.. image:: https://img.shields.io/pypi/dm/django-web-profiler.svg
-    :target: https://pypi.python.org/pypi/django-web-profiler
-    :alt: Downloads
-
 .. image:: https://img.shields.io/pypi/v/django-web-profiler.svg
     :target: https://pypi.python.org/pypi/django-web-profiler
     :alt: Latest Release
