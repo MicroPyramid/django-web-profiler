@@ -47,7 +47,7 @@ Modules used:
 Installation Procedure
 ======================
 
-1. Install django-web-packer using the following command::
+1. Install django-web-profiler using the following command::
 
     pip install django-web-profiler
 
