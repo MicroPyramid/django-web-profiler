@@ -83,7 +83,6 @@ class DebugLoggingMiddleware(DebugToolbarMiddleware):
         if settings.DEBUG:
             toolbar = self.__class__.debug_toolbars.pop(
                 threading.current_thread().ident, None)
-
             if not toolbar:
                 return response
 
@@ -228,5 +227,5 @@ class DebugLoggingMiddleware(DebugToolbarMiddleware):
             except:
                 request_details['system_cpu_time'] = 0
             request.statistics = request_details
-
+            logger1.debug(statistics)
         return response
