@@ -3,7 +3,7 @@ from django import template
 register = template.Library()
 
 
-@register.assignment_tag(takes_context=True)
+@register.simple_tag(takes_context=True)
 def get_page(context, page, no_pages):
     if page <= 3:
         start_page = 1
@@ -20,4 +20,3 @@ def get_page(context, page, no_pages):
 
     pages = range(start_page, end_page + 1)
     return pages
-

@@ -22,7 +22,7 @@ for dirpath, dirnames, filenames in os.walk(PROJECT_NAME):
 
 setup(
     name='django-web-profiler',
-    version='0.1.2',
+    version='0.1.4',
     packages=find_packages(exclude=['tests', 'tests.*']),
     include_package_data=True,
     description="a django profiling tool which logs, stores debug toolbar statistics and also a set of URL's statistics using a management command.",
@@ -45,6 +45,6 @@ setup(
         'Topic :: Internet :: WWW/HTTP :: Dynamic Content',
     ],
     install_requires=[
-        "Django>=1.6.0,<1.11",
+        "Django",
     ],
 )

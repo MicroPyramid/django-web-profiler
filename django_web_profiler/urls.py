@@ -1,6 +1,8 @@
 from django.conf.urls import url
 from .views import (index, records_list, device_records_list)
 
+app_name = 'django_web_profiler'
+
 urlpatterns = [
     # url(r'^home/$','home'),
     url(r'^$', index, name="index"),

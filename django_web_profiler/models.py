@@ -1,6 +1,4 @@
-from django.core.urlresolvers import reverse
 from django.db import models
-from django.template.defaultfilters import date as date_filter
 
 
 class ProfileLog(models.Model):
@@ -35,7 +33,7 @@ class ProfileLogRecord(models.Model):
     """Captures statistics for individual requests."""
     timestamp = models.DateTimeField(auto_now_add=True)
     profile_log = models.ForeignKey(
-        ProfileLog, blank=True, null=True, related_name='profile_log')
+        ProfileLog, blank=True, null=True, related_name='profile_log', on_delete=models.CASCADE)
 
     request_path = models.CharField(max_length=255)
     ip_address = models.CharField(max_length=255)
