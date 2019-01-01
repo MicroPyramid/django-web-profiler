@@ -37,12 +37,10 @@ Source Code is available in Micropyramid Repository(https://github.com/MicroPyra
 Modules used:
 
     * Python  >= 2.6 (or Python 3.4)
-    * Django  = 1.11.2
+    * Django  = 1.11.15
     * Django Compressor = 2.1.1
     * Django Debug Toolbar = 1.8
-    * requests = 2.17.3
-    * JQuery  >= 1.7
-
+    * requests = 2.20.0
 
 Installation Procedure
 ======================
