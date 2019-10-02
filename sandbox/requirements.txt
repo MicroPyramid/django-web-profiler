@@ -1,4 +1,4 @@
-Django==1.11.21
+Django==1.11.23
 django-compressor==2.1.1
 django-debug-toolbar==1.8
 django-web-profiler==0.1.3
